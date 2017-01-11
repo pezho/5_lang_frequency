@@ -1,6 +1,6 @@
 # Frequency Analysis of Words
 
-[TODO. There will be project description]
+Скрипт должен принимать на вход путь до текстового файла и выводить в консоль десять самых популярных слов в этом файле в порядке убывания частоты.
 
 # Project Goals
 
