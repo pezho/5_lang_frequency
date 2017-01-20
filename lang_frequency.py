@@ -1,28 +1,29 @@
-
 import re
-from collections import Counter
 
 
 def load_data(filepath):
-    """В том случае если файл большой лучше читать его построчно"""
-    pass
+    with open(filepath) as f:
+        return f.read()
 
 
-def get_most_frequent_words(filepath, minlen=0):
-    """
-    
-    """
-    worlds_count = Counter()
-    for line in open(filepath, encoding='utf8'):
-        line = re.sub(r'[,.!@#$%^&*()=+_?\/—]', '', line)
-        for world in line.lower().split():
-            if len(world) < minlen:
-                continue
-            worlds_count[world] += 1
+def get_most_frequent_words(text):
+    WORLD_COUNT = 10
+    worlds = {}
+    for world in text.lower().split():
+        world = re.sub(r'[,.!@#$%^&*()=+_?\/—:;]', '', world)
+        if world:
+            worlds[world] = worlds.get(world, 0) + 1
             
-    return worlds_count.most_common(10)
+    return sorted(worlds.items(), key=lambda k: k[1], 
+                                    reverse=True)[:WORLD_COUNT]
 
 
 if __name__ == '__main__':
-    filepath = 'РУСЛАН И ЛЮДМИЛА.txt'
-    print('\n'.join(map(lambda w: '%s: %s' % w, get_most_frequent_words(filepath))))
+    filepath = input('Enter path to file: ')
+    text = load_data(filepath)
+    # print(text)
+    most_frequent_words = get_most_frequent_words(text)
+    for k, v in most_frequent_words:
+        print('{}: {}'.format(k, v))
+
+    
