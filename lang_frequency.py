@@ -7,7 +7,7 @@ def load_data(filepath):
 
 
 def get_most_frequent_words(text):
-    WORLD_COUNT = 10
+    world_count = 10 
     worlds = {}
     for world in text.lower().split():
         world = re.sub(r'[,.!@#$%^&*()=+_?\/—:;]', '', world)
@@ -15,7 +15,7 @@ def get_most_frequent_words(text):
             worlds[world] = worlds.get(world, 0) + 1
             
     return sorted(worlds.items(), key=lambda k: k[1], 
-                                    reverse=True)[:WORLD_COUNT]
+                                    reverse=True)[:world_count]
 
 
 if __name__ == '__main__':
