@@ -6,6 +6,16 @@ def load_data(filepath):
         return f.read()
 
 
+def get_most_frequent_words_with_counter(text):
+    worlds_count = Counter()
+    world_count = 10
+    text = re.sub(r'[,.!@#$%^&*()=+_?\/—]', '', text)
+    for world in text.lower().split():
+        worlds_count[world] += 1
+            
+    return worlds_count.most_common(world_count)
+
+    
 def get_most_frequent_words(text):
     world_count = 10 
     worlds = {}
